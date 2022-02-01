@@ -12,7 +12,7 @@ This situation is commonly encountered in fields such as quantum chromodynamics,
 
 This _big data regime_ requires therefore different tools, and in fact, a potent mathematical framework of _random matrix theory_ comes to the rescue: it allows to derive better estimators of the correlation matrix, where the noise is "cleaned", and the underlying truth more visible. They are called _shrinkage estimators_.
 
-![making the truth more visible](figures/C_clusters_2_Student_VMA_1_best_tau_hist.png)
+![making the truth more visible](figures/example_3_hist_lambdas_xi_VARMA_1_1_fit.png)
 
 There are several flavors of them, depending on a general structure one chooses to model the data with. Historical milestones include the _Ledoit-Wolf linear shrinkage_ and the _Ledoit-Péché nonlinear shrinkage_. There are also more complicated versions, allowing for instance for correlations between the collected samples.
 
@@ -20,7 +20,7 @@ This library is designed to be a user-friendly source of both theoretical knowle
 
 ## Getting Started
 
-A good entry point to the library is the detailed _User's Guide_, a Jupyter notebook `shrinkage_user_guide.ipynb`. It includes a theoretical background, as well as extensive code examples.
+A good entry point to the library is the detailed _User's Guide_, a Jupyter notebook `shrinkage_user_guide.ipynb`. It includes a theoretical background, as well as extensive code examples. Its last section, in particular, contains the complete pipeline in a short series of steps - so it may be referred to whenever a quick calculation is needed.
 
 For an in-depth understanding of how shrinkage of large correlation matrices works, explore scientific articles located in the directory `papers`.
 
@@ -32,6 +32,9 @@ Andrzej Jarosz
 
 - 1.0.0
   - Initial Release
+
+- 1.1.0
+  - A major refactor. Added functionalities pertaining to the moving-window cross-validation estimation of oracle eigenvalue, the isotonic regression fit to the, as well as a method of calculating an effective number of samples for the Ledoit-Péché estimator.
 
 ## License
 
