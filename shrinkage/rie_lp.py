@@ -189,10 +189,44 @@ class LedoitPecheShrinkage(SampleEigenvalues):
             )
         
         if set_options:
+            plt.xlabel('eigenvalue')
+            density_shown = (
+                kwargs.get('show_lambdas', False)
+                or kwargs.get('show_lambdas_density', False)
+                or kwargs.get('show_oracle_mwcv', False)
+                or kwargs.get('show_oracle_mwcv_density', False)
+                or kwargs.get('show_oracle_mwcv_iso', False)
+                or kwargs.get('show_oracle_mwcv_iso_density', False)
+                or show_xi_LP
+                or show_xi_LP_density
+                or show_xi_LP_eff_best_oracle_mwcv
+                or show_xi_LP_eff_best_oracle_mwcv_density
+            )
+            Hilbert_shown = (
+                kwargs.get('show_lambdas_Hilbert', False)
+                or kwargs.get('show_oracle_mwcv_Hilbert', False)
+                or kwargs.get('show_oracle_mwcv_iso_Hilbert', False)
+                or show_xi_LP_Hilbert
+                or show_xi_LP_eff_best_oracle_mwcv_Hilbert
+            )
+            hist_y_label = ', '.join(
+                [
+                    label
+                    for label, present in zip(
+                        ['probability density', 'Hilbert transform'],
+                        [density_shown, Hilbert_shown]
+                    )
+                    if present
+                ]
+            )
+            plt.ylabel(hist_y_label)
+
             plt.xlim(kwargs.get('xlim', None))
             plt.ylim(kwargs.get('ylim', None))
+
             if kwargs.get('legend', True):
                 plt.legend()
+            
             if savefig:
                 plt.savefig(fname=savefig)
 
@@ -229,8 +263,8 @@ class LedoitPecheShrinkage(SampleEigenvalues):
             )
         
         if set_options:
-            plt.xlabel('lambda')
-            plt.ylabel('xi')
+            plt.xlabel(r'$\lambda$')
+            plt.ylabel(r'$\xi$')
             plt.xlim(kwargs.get('xlim', None))
             plt.ylim(kwargs.get('ylim', None))
             if kwargs.get('legend', True):

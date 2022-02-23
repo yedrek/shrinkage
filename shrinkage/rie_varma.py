@@ -375,6 +375,41 @@ class VarmaShrinkage(LedoitPecheShrinkage, Varma):
             )
         
         if set_options:
+            plt.xlabel('eigenvalue')
+            density_shown = (
+                kwargs.get('show_lambdas', False)
+                or kwargs.get('show_lambdas_density', False)
+                or kwargs.get('show_oracle_mwcv', False)
+                or kwargs.get('show_oracle_mwcv_density', False)
+                or kwargs.get('show_oracle_mwcv_iso', False)
+                or kwargs.get('show_oracle_mwcv_iso_density', False)
+                or kwargs.get('show_xi_LP', False)
+                or kwargs.get('show_xi_LP_density', False)
+                or kwargs.get('show_xi_LP_eff_best_oracle_mwcv', False)
+                or kwargs.get('show_xi_LP_eff_best_oracle_mwcv_density', False)
+                or show_xi
+                or show_xi_density
+            )
+            Hilbert_shown = (
+                kwargs.get('show_lambdas_Hilbert', False)
+                or kwargs.get('show_oracle_mwcv_Hilbert', False)
+                or kwargs.get('show_oracle_mwcv_iso_Hilbert', False)
+                or kwargs.get('show_xi_LP_Hilbert', False)
+                or kwargs.get('show_xi_LP_eff_best_oracle_mwcv_Hilbert', False)
+                or show_xi_Hilbert
+            )
+            hist_y_label = ', '.join(
+                [
+                    label
+                    for label, present in zip(
+                        ['probability density', 'Hilbert transform'],
+                        [density_shown, Hilbert_shown]
+                    )
+                    if present
+                ]
+            )
+            plt.ylabel(hist_y_label)
+
             plt.xlim(kwargs.get('xlim', None))
             plt.ylim(kwargs.get('ylim', None))
             if kwargs.get('legend', True):
@@ -404,8 +439,8 @@ class VarmaShrinkage(LedoitPecheShrinkage, Varma):
             )
         
         if set_options:
-            plt.xlabel('lambda')
-            plt.ylabel('xi')
+            plt.xlabel(r'$\lambda$')
+            plt.ylabel(r'$\xi$')
             plt.xlim(kwargs.get('xlim', None))
             plt.ylim(kwargs.get('ylim', None))
             if kwargs.get('legend', True):

@@ -368,10 +368,38 @@ class SampleEigenvalues:
             )
 
         if set_options:
+            plt.xlabel('eigenvalue')
+            density_shown = (
+                show_lambdas
+                or show_lambdas_density
+                or show_oracle_mwcv
+                or show_oracle_mwcv_density
+                or show_oracle_mwcv_iso
+                or show_oracle_mwcv_iso_density
+            )
+            Hilbert_shown = (
+                show_lambdas_Hilbert
+                or show_oracle_mwcv_Hilbert
+                or show_oracle_mwcv_iso_Hilbert
+            )
+            hist_y_label = ', '.join(
+                [
+                    label
+                    for label, present in zip(
+                        ['probability density', 'Hilbert transform'],
+                        [density_shown, Hilbert_shown]
+                    )
+                    if present
+                ]
+            )
+            plt.ylabel(hist_y_label)
+
             plt.xlim(xlim)
             plt.ylim(ylim)
+
             if legend:
                 plt.legend()
+            
             if savefig:
                 plt.savefig(fname=savefig)
 
@@ -429,8 +457,8 @@ class SampleEigenvalues:
             )
 
         if set_options:
-            plt.xlabel('lambda')
-            plt.ylabel('xi')
+            plt.xlabel(r'$\lambda$')
+            plt.ylabel(r'$\xi$')
             plt.xlim(xlim)
             plt.ylim(ylim)
             if legend:
